@@ -4,8 +4,6 @@ use CGI;
 
 $cgi = new CGI;
 
-use Switch;
-
 @operadores=("+","-","*","/");
 
 print $cgi->header;
