@@ -7,4 +7,6 @@ Como nota importante he de indicar que para poder utilizar la estructura de cont
 Para ello, desde el terminal debemos ejecutar el siguiente código:
 
   sudo apt-get install libswitch-perl
+  o bien
+  sudo cpan -i Switch
   
