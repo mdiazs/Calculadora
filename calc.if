@@ -6,7 +6,7 @@ $cgi = new CGI;
 
 @operadores=("+","-","*","/");
 
-print $cgi->header;
+print $cgi->header(-charset => 'utf-8');
 
 print $cgi->start_html('Calculadora');
 
@@ -29,25 +29,19 @@ if (!$cgi->param) {
 	$numero2 = $cgi->param('numero2');
 	$operador = $cgi->param('operador');
 	if ($numero1 !~ /^[0-9]+$/ or $numero2 !~ /^[0-9]+$/){
-		print 'Solo se aceptan numeros';
-		return;
+                $st = 'Solo se aceptan números';
 	}else{
 		if ($operador eq "+"){
-			$tsuma = $numero1 + $numero2;
-			print $tsuma;
+			$resul = $numero1 + $numero2;
 		}elsif ($operador eq "-"){
-			$tresta = $numero1 - $numero2;
-			print $tresta;
+			$resul = $numero1 - $numero2;
 		}elsif ($operador eq "*"){
-			$tmulti = $numero1 * $numero2;
-			print $tmulti;
+			$resul = $numero1 * $numero2;
 		}else{
-			$tdiv = $numero1 / $numero2;
-			print $tdiv;
+			$resul = $numero1 / $numero2;
 		}
-					
+		$st = "Resultado: " . $resul;	
 	}
-		
+        print $cgi->h3($st);
 }
-
 print $cgi->end_html;
