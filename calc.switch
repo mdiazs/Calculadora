@@ -1,0 +1,53 @@
+#!/usr/bin/perl
+
+use CGI;
+
+$cgi = new CGI;
+
+use Switch;
+
+@operadores=("+","-","*","/");
+
+print $cgi->header;
+
+print $cgi->start_html('Calculadora');
+
+if (!$cgi->param) {
+	print $cgi->start_form;
+	print $cgi->h3('Calculadora');
+	print $cgi->textfield(-name=>'numero1',
+			-size=>10,
+			-maxlength=>20);
+	print $cgi->popup_menu(-name=>'operador',
+								-values=>\@operadores);
+	print $cgi->textfield(-name=>'numero2',
+			-size=>10,
+			-maxlength=>20);
+	print $cgi->br;
+	print $cgi->submit(-value=>'Resultado');
+	print $cgi->end_form;
+}else{
+	$numero1 = $cgi->param('numero1');
+	$numero2 = $cgi->param('numero2');
+	$operador = $cgi->param('operador');
+
+	if ($numero1 !~ /^[0-9]+$/ or $numero2 !~ /^[0-9]+$/){
+		print 'Solo se aceptan numeros';
+		return;
+	}else{
+		switch($operador){
+			case "+" {$total = $numero1 + $numero2;
+				 print $total; }
+			case "-" {$total = $numero1 - $numero2;
+                        	 print $total; }
+			case "*" {$total = $numero1 * $numero2;
+                	         print $total; }
+			case "/" {$total = $numero1 / $numero2;
+                	         print $total; }
+
+		}
+	}
+		
+}
+
+print $cgi->end_html;
