@@ -19,7 +19,7 @@ if (!$cgi->param) {
 			-size=>10,
 			-maxlength=>20);
 	print $cgi->popup_menu(-name=>'operador',
-								-values=>\@operadores);
+		-values=>\@operadores);
 	print $cgi->textfield(-name=>'numero2',
 			-size=>10,
 			-maxlength=>20);
